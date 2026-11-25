@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Questions · Website example</title>
+  <meta name="description" content="The things people ask about a site built this way.">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/assets/img/topaze-gemstone.svg?v=714e7a6d00" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=8da9455d48">
+  <link rel="stylesheet" href="/assets/css/site.css?v=234cea6a18">
+  <link rel="alternate" type="application/rss+xml" title="Blog example" href="/blog/feed.xml">
+  <script src="/assets/js/site.js?v=c6e17bd89f" defer></script>
+</head>
+<body class="section-site">
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="logo" href="/site/" aria-label="Website example: home">
+      <picture>
+        <source srcset="/assets/img/topaze-by-aigon-reversed.svg?v=e01d270dda" media="(prefers-color-scheme: dark)">
+        <img src="/assets/img/topaze-by-aigon.svg?v=11f9abb359" alt="Topaze by aigon" width="140" height="42">
+      </picture>
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg><span class="visually-hidden">Menu</span>
+    </button>
+    <nav id="site-menu" class="site-menu" aria-label="Main">
+      <ul>
+        <li><a href="/site/">Home</a></li>
+        <li><a href="/site/guide/">Guide</a></li>
+        <li><a href="/site/faq/" aria-current="page">FAQ</a></li>
+        <li><a href="/site/about/">About</a></li>
+      </ul>
+      <a class="button button-primary" href="/site/contact/">Contact</a>
+    </nav>
+  </div>
+</header>
+  <main id="main">
+<section class="page-head page-head-tinted">
+  <div class="container">
+    <p class="label">Website example</p>
+    <h1>Questions</h1>
+<p class="lead">The things people ask about a site built this way.</p>  </div>
+</section>
+<section class="section">
+  <div class="container with-sidebar">
+    <nav class="sidebar" aria-label="In this site">
+      <p class="label">Pages</p>
+      <ul>
+        <li><a href="/site/">Home</a></li>
+        <li><a href="/site/guide/">Guide</a></li>
+        <li><a href="/site/faq/" aria-current="page">FAQ</a></li>
+        <li><a href="/site/about/">About</a></li>
+        <li><a href="/site/contact/">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="prose">
+      <h3>Why commit the generated HTML?</h3>
+<p>So that Netlify has nothing to build. It copies <code>www/</code> and is done. A deploy cannot fail on a missing package or a changed Python version.</p>
+<h3>Why is the source not published?</h3>
+<p>Because not everything in it is for readers. Front matter is build instructions, and a <code>private:</code> field holds notes for the author. The build publishes what readers need: the page, and the page again as clean Markdown for any client that asks for it.</p>
+<h3>Can I use another brand?</h3>
+<p>Yes. Replace the tokens file and the logos, and the whole site follows. Nothing in the templates names a colour.</p>
+<h3>Do I need JavaScript?</h3>
+<p>These pages use one small script, for the menu on narrow screens. Everything else is HTML and CSS.</p>
+    </div>
+  </div>
+</section>
+  </main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <img src="/assets/img/topaze-gemstone.svg?v=714e7a6d00" alt="" width="28" height="28">
+      <p>Website example. Built with Jinja2 and published by Netlify from <a href="https://github.com/aigonai/site-netlifyexample">aigonai/site-netlifyexample</a>.</p>
+    </div>
+    <nav class="footer-links" aria-label="Examples">
+      <a href="/">All examples</a>
+      <a href="/landing/">Landing page</a>
+      <a href="/site/">Website</a>
+      <a href="/blog/">Blog</a>
+      <a href="https://stefanloesch.substack.com">Substack</a>
+      <a href="/llms.txt">llms.txt</a>
+    </nav>
+    <p class="footer-note">Topaze is a product of Aigon.</p>
+  </div>
+</footer>
+</body>
+</html>

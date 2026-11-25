@@ -1,0 +1,34 @@
+{#- The landing page's copy lives in front matter for the HTML layout; this writes the
+    same copy out as plain Markdown, in reading order. -#}
+{% set m = page.meta %}
+# {{ m.hero.headline }}
+
+{{ m.hero.lead }}
+
+## {{ m.how.title }}
+
+{% for step in m.how.steps %}
+{{ loop.index }}. **{{ step.title }}.** {{ step.text }}
+{% endfor %}
+
+## {{ m.features.title }}
+
+{% for f in m.features['items'] %}
+- **{{ f.title }}.** {{ f.text }}
+{% endfor %}
+
+{{ m.features.figure.value }} {{ m.features.figure.label }}.
+
+## Questions people ask
+
+{% for q in m.faq %}
+### {{ q.q }}
+
+{{ q.a }}
+
+{% endfor %}
+## {{ m.cta.title }}
+
+{{ page.markdown }}
+
+{{ m.cta.label }}: {{ m.cta.url }}

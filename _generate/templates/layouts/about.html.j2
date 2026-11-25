@@ -1,0 +1,21 @@
+{#- The blog's about page: who writes it, beside the text. -#}
+{% extends "base.html.j2" %}
+{% block main %}
+<section class="page-head">
+  <div class="container">
+    <p class="label">About</p>
+    <h1>{{ page.title }}</h1>
+  </div>
+</section>
+<section class="section">
+  <div class="container about">
+    <aside class="card about-card">
+      <img src="{{ asset('assets/img/topaze-gemstone.svg') }}" alt="" width="64" height="64">
+      <h3>{{ page.meta.author }}</h3>
+      <p>{{ page.meta.role }}</p>
+      <p class="mono small">{{ all_posts | length }} posts</p>
+    </aside>
+    <div class="prose">{{ page.body | safe }}</div>
+  </div>
+</section>
+{% endblock %}

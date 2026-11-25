@@ -1,0 +1,13 @@
+{% extends "base.html.j2" %}
+{% block title %}Page not found · {{ section.title }}{% endblock %}
+{% block description %}This page does not exist.{% endblock %}
+{% block meta %}<meta name="robots" content="noindex">{% endblock %}
+{% block main %}
+<section class="page-head">
+  <div class="container">
+    <p class="label">404</p>
+    <h1>Page not found</h1>
+    <p class="lead">Nothing lives at this address. The examples are at <a href="/landing/">/landing/</a>, <a href="/site/">/site/</a> and <a href="/blog/">/blog/</a>.</p>
+  </div>
+</section>
+{% endblock %}

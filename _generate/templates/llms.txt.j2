@@ -1,0 +1,18 @@
+{% autoescape false %}
+# {{ site.title }}
+
+> Worked examples on Netlify, styled with the Topaze brand kit: three static sites built with Jinja2 and Python (a landing page, a multi-page website and a blog), and a web app, the Topaze Clock. Every page of the three sites has a Markdown twin: its index.md, served to any request that sends Accept: text/markdown. Source: {{ site.repo }}. Built for the post "{{ site.substack.post_title }}" on {{ site.substack.url }}{% if site.substack.live_url %}: {{ site.substack.live_url }}{% endif %}
+
+{% for key, section in sections.items() %}
+## {{ section.title }}
+
+{% for page in pages if page.section_key == key %}
+- [{{ page.title }}]({{ page.url }}index.md){% if page.description %}: {{ page.description }}{% endif %}
+
+{% endfor %}
+
+{% endfor %}
+## Web app
+
+- [Topaze Clock](/clock/): a world clock that runs entirely in the browser, installs as a PWA and works offline. MIT licensed. Source and explanation: [README](/clock/README.md)
+{% endautoescape %}

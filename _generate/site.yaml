@@ -1,0 +1,85 @@
+# The site: one Netlify site, three generated examples side by side, each its own section with
+# its own menu. A page's section is the first folder of its path under content/.
+title: Netlify examples
+base_url: https://cosmic-zuccutto-c132f5.netlify.app
+repo: https://github.com/aigonai/site-netlifyexample
+
+# The Substack post these examples were built for. The site links the post whenever
+# `post_url` is set, and says "coming soon" when it is not. `post_date` is the day it
+# is published; the link goes live ahead of it, and is a 404 until then.
+substack:
+  url: https://stefanloesch.substack.com
+  post_title: This app could have been a web app
+  post_subtitle: How to use Claude Code to quickly create functionality that you need
+  post_url: https://stefanloesch.substack.com/p/how-to-create-blog-landingpage-website-blog-webapp-using-claude-ai
+  post_date: 2026-12-01
+
+# QR codes the build draws: each encodes base_url + path, written to `file` in www/.
+# Kept out of /assets/ on purpose: a QR is linked from Markdown without a cache
+# buster, and /assets/ is cached for a year.
+qr_codes:
+  - {path: /skl, file: downloads/cards/qr-skl.png}
+
+# Forms, collected by Netlify Forms: no server and no script of our own. Netlify finds
+# them in the published HTML at deploy time (data-netlify="true"); submissions appear
+# in the Netlify UI under Forms. A page shows one with `form: <name>` in its front
+# matter. `action` is the page a sender lands on afterwards.
+forms:
+  signup:
+    action: /landing/thanks/
+    submit: Send me the starter kit
+    fields:
+      - {name: name, label: Your name, type: text, required: true, autocomplete: name}
+      - {name: email, label: Email, type: email, required: true, autocomplete: email}
+  contact:
+    action: /site/contact/thanks/
+    submit: Send message
+    fields:
+      - {name: name, label: Your name, type: text, required: true, autocomplete: name}
+      - {name: email, label: Email, type: email, required: true, autocomplete: email}
+      - {name: topic, label: About, type: select, options: [A question, A correction, Something else]}
+      - {name: message, label: Message, type: textarea, required: true}
+
+sections:
+  root:
+    path: /
+    title: Netlify examples
+    default_layout: home
+    menu:
+      - {label: Landing page, url: /landing/}
+      - {label: Website, url: /site/}
+      - {label: Blog, url: /blog/}
+    button: {label: Source on GitHub, url: https://github.com/aigonai/site-netlifyexample}
+
+  landing:
+    path: /landing/
+    title: Landing page example
+    default_layout: landing
+    theme: dark
+    menu:
+      - {label: How it works, url: /landing/#how}
+      - {label: What you get, url: /landing/#features}
+      - {label: Questions, url: /landing/#faq}
+    button: {label: Get started, url: /landing/#start}
+
+  site:
+    path: /site/
+    title: Website example
+    default_layout: page
+    menu:
+      - {label: Home, url: /site/}
+      - {label: Guide, url: /site/guide/}
+      - {label: FAQ, url: /site/faq/}
+      - {label: About, url: /site/about/}
+    button: {label: Contact, url: /site/contact/}
+
+  blog:
+    path: /blog/
+    title: Blog example
+    description: Notes on building small tools as web pages.
+    default_layout: post
+    menu:
+      - {label: Posts, url: /blog/}
+      - {label: About, url: /blog/about/}
+    button: {label: RSS feed, url: /blog/feed.xml}
+    button_style: link

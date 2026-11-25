@@ -1,0 +1,28 @@
+{#- One blog post, from its page bundle: the image beside index.md, then the body.
+    Front matter is exactly title, date, summary, image. -#}
+{% extends "base.html.j2" %}
+{% from "partials/lucide.html.j2" import icon %}
+{% block meta %}
+  <meta property="og:title" content="{{ page.title }}">
+  <meta property="og:description" content="{{ page.meta.summary }}">
+  <meta property="og:image" content="{{ site.base_url }}{{ page.file_url(page.meta.image) }}">
+  <meta property="og:type" content="article">
+{% endblock %}
+{% block main %}
+<article class="post">
+  <header class="container narrow post-head">
+    <p class="meta">{{ icon('calendar') }} <time datetime="{{ page.meta.date }}">{{ page.meta.date | long_date }}</time></p>
+    <h1>{{ page.title }}</h1>
+    <p class="lead">{{ page.meta.summary }}</p>
+  </header>
+  <figure class="container post-image">
+    <img src="{{ page.file_url(page.meta.image) }}" alt="" width="1600" height="900">
+  </figure>
+  <div class="container narrow prose">
+    {{ page.body | safe }}
+  </div>
+  <nav class="container narrow post-nav" aria-label="More posts">
+    <a href="{{ section.path }}">{{ icon('arrow-left') }} All posts</a>
+  </nav>
+</article>
+{% endblock %}

@@ -1,0 +1,19 @@
+{#- The blog's front page: a masthead, then the recent posts as an editorial list,
+    newest first: date, title and summary on the left, thumbnail on the right. -#}
+{% extends "base.html.j2" %}
+{% block title %}{{ page.title }}{% endblock %}
+{% block main %}
+<section class="masthead">
+  <div class="container">
+    <h1 class="display">{{ page.title }}</h1>
+    <div class="lead">{{ page.body | safe }}</div>
+  </div>
+</section>
+<section class="section">
+  <div class="container post-rows">
+    {% for post in posts %}
+    {% with latest = loop.first %}{% include "partials/post_card.html.j2" %}{% endwith %}
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

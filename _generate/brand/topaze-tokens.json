@@ -1,0 +1,380 @@
+{
+ "name": "Topaze",
+ "version": 1,
+ "color": {
+  "themes": [
+   {
+    "id": "light",
+    "name": "Light"
+   },
+   {
+    "id": "dark",
+    "name": "Dark"
+   }
+  ],
+  "tokens": [
+   {
+    "name": "topaz-300",
+    "value": "#55c9ee",
+    "usage": "Gem highlight facet. Primary fill in dark mode; never text on light grounds (1.9:1)."
+   },
+   {
+    "name": "topaz-500",
+    "value": "#079fe6",
+    "usage": "Gem body facet, the signature blue. Large fields, illustration, cover blocks. Not for text on white (2.95:1)."
+   },
+   {
+    "name": "topaz-600",
+    "value": "#008ed7",
+    "usage": "Gem side facet. Secondary fields and chart series 2."
+   },
+   {
+    "name": "topaz-700",
+    "value": "#0082ce",
+    "usage": "Gem shadow facet. Chart series 3, pressed states on brand fields."
+   },
+   {
+    "name": "topaz-800",
+    "value": "#0074bf",
+    "usage": "Gem deepest facet. The one text-safe brand blue on white (4.9:1): links, primary buttons."
+   },
+   {
+    "name": "topaz-900",
+    "value": "#00649f",
+    "usage": "Hover and pressed for topaz-800; brand text on topaz-50 (5.6:1)."
+   },
+   {
+    "name": "topaz-50",
+    "value": "#e8f6fd",
+    "usage": "Pale topaz tint for highlighted panels and selected rows on light grounds."
+   },
+   {
+    "name": "graphite",
+    "value": "#272b31",
+    "usage": "The wordmark ink. Headlines and body text on light grounds (14.2:1 on white)."
+   },
+   {
+    "name": "imperial",
+    "value": "#e9a63a",
+    "usage": "Imperial topaz, the warm counter-accent. Small doses only: one highlight, badge or rule per view. Text on it is graphite (6.8:1)."
+   },
+   {
+    "name": "imperial-ink",
+    "value": "#985f08",
+    "usage": "Imperial as text or icon on light grounds (5.3:1 on white)."
+   },
+   {
+    "name": "surface",
+    "value": {
+     "light": "#ffffff",
+     "dark": "#0d1319"
+    },
+    "usage": "Page background."
+   },
+   {
+    "name": "surface-sunken",
+    "value": {
+     "light": "#f6f8fa",
+     "dark": "#151d26"
+    },
+    "usage": "Section bands, code blocks, table headers."
+   },
+   {
+    "name": "surface-raised",
+    "value": {
+     "light": "#ffffff",
+     "dark": "#1b2530"
+    },
+    "usage": "Cards and menus; on light grounds separate them with border, not shadow."
+   },
+   {
+    "name": "border",
+    "value": {
+     "light": "#dde3ea",
+     "dark": "#2a3542"
+    },
+    "usage": "Hairlines, dividers and card edges (decorative, carries no meaning)."
+   },
+   {
+    "name": "border-strong",
+    "value": {
+     "light": "#8b96a2",
+     "dark": "#6b7682"
+    },
+    "usage": "Input and control borders; 3:1 on surface in light, 4.0:1 in dark."
+   },
+   {
+    "name": "ink",
+    "value": {
+     "light": "{graphite}",
+     "dark": "#e9eef3"
+    },
+    "usage": "Body and headline text on surface, surface-sunken and surface-raised."
+   },
+   {
+    "name": "ink-muted",
+    "value": {
+     "light": "#5a6470",
+     "dark": "#9aa5b1"
+    },
+    "usage": "Secondary text, captions, metadata on any surface (5.6:1 or better in both themes)."
+   },
+   {
+    "name": "primary",
+    "value": {
+     "light": "{topaz-800}",
+     "dark": "{topaz-300}"
+    },
+    "usage": "Primary buttons, links, active states, the focus ring."
+   },
+   {
+    "name": "primary-hover",
+    "value": {
+     "light": "{topaz-900}",
+     "dark": "#7ed6f2"
+    },
+    "usage": "Hover and pressed state of primary."
+   },
+   {
+    "name": "on-primary",
+    "value": {
+     "light": "#ffffff",
+     "dark": "#0d1319"
+    },
+    "usage": "Text and icons on a primary fill (4.9:1 light, 9.8:1 dark)."
+   },
+   {
+    "name": "brand",
+    "value": {
+     "light": "{topaz-500}",
+     "dark": "{topaz-500}"
+    },
+    "usage": "The signature blue as a field or graphic in both themes. Not for text on light grounds (2.95:1); display text on dark grounds only (6.3:1)."
+   },
+   {
+    "name": "highlight",
+    "value": {
+     "light": "{topaz-50}",
+     "dark": "#0f2c3f"
+    },
+    "usage": "Selected rows and callout panels; text on it is ink or topaz-900 in light."
+   },
+   {
+    "name": "accent",
+    "value": {
+     "light": "{imperial}",
+     "dark": "{imperial}"
+    },
+    "usage": "Warm accent fill; pair with on-accent."
+   },
+   {
+    "name": "on-accent",
+    "value": {
+     "light": "{graphite}",
+     "dark": "{graphite}"
+    },
+    "usage": "Text on accent fills."
+   },
+   {
+    "name": "success",
+    "value": {
+     "light": "#1f7a50",
+     "dark": "#4cc38a"
+    },
+    "usage": "Positive status text and icons; always with a word or icon, never colour alone."
+   },
+   {
+    "name": "danger",
+    "value": {
+     "light": "#b42318",
+     "dark": "#f97066"
+    },
+    "usage": "Errors and destructive actions; always with a word or icon."
+   },
+   {
+    "name": "focus",
+    "value": {
+     "light": "{topaz-800}",
+     "dark": "{topaz-300}"
+    },
+    "usage": "2px solid focus ring with 2px offset on every interactive element."
+   }
+  ]
+ },
+ "type": {
+  "fonts": [],
+  "families": {
+   "sans": "\"Montserrat\", \"Segoe UI\", system-ui, sans-serif",
+   "mono": "\"IBM Plex Mono\", ui-monospace, Menlo, monospace"
+  },
+  "groups": [
+   {
+    "name": "Display",
+    "family": "sans",
+    "styles": [
+     {
+      "name": "display",
+      "fontSize": "52px",
+      "lineHeight": "60px",
+      "fontWeight": 700,
+      "letterSpacing": "-0.01em",
+      "usage": "One per page: cover lines, hero statements."
+     },
+     {
+      "name": "h1",
+      "fontSize": "38px",
+      "lineHeight": "46px",
+      "fontWeight": 700,
+      "letterSpacing": "-0.01em",
+      "usage": "Page titles."
+     },
+     {
+      "name": "h2",
+      "fontSize": "27px",
+      "lineHeight": "36px",
+      "fontWeight": 700,
+      "letterSpacing": "0em",
+      "usage": "Section titles."
+     },
+     {
+      "name": "h3",
+      "fontSize": "20px",
+      "lineHeight": "28px",
+      "fontWeight": 600,
+      "usage": "Sub-sections, card titles."
+     }
+    ]
+   },
+   {
+    "name": "Text",
+    "family": "sans",
+    "styles": [
+     {
+      "name": "body-lg",
+      "fontSize": "18px",
+      "lineHeight": "30px",
+      "fontWeight": 400,
+      "usage": "Lead paragraphs and slide body."
+     },
+     {
+      "name": "body",
+      "fontSize": "16px",
+      "lineHeight": "26px",
+      "fontWeight": 400,
+      "usage": "Default running text."
+     },
+     {
+      "name": "small",
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontWeight": 500,
+      "usage": "Captions, table cells, footnotes."
+     },
+     {
+      "name": "label",
+      "fontSize": "12px",
+      "lineHeight": "16px",
+      "fontWeight": 600,
+      "letterSpacing": "0.1em",
+      "sample": "PROTOCOL REVIEW",
+      "usage": "All-caps eyebrows and labels in SemiBold, the weight of the wordmark letters."
+     }
+    ]
+   },
+   {
+    "name": "Data",
+    "family": "mono",
+    "styles": [
+     {
+      "name": "mono",
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontWeight": 400,
+      "sample": "0x7a3f\u2026c91e  1,284.50",
+      "usage": "Figures, addresses, code, invoice amounts."
+     }
+    ]
+   }
+  ]
+ },
+ "spacing": {
+  "tokens": [
+   {
+    "name": "space-1",
+    "value": "4px",
+    "usage": "Icon-to-label gaps."
+   },
+   {
+    "name": "space-2",
+    "value": "8px",
+    "usage": "Tight stacks, chip padding."
+   },
+   {
+    "name": "space-3",
+    "value": "12px",
+    "usage": "Control padding (vertical)."
+   },
+   {
+    "name": "space-4",
+    "value": "16px",
+    "usage": "Default gap; control padding (horizontal)."
+   },
+   {
+    "name": "space-6",
+    "value": "24px",
+    "usage": "Card padding."
+   },
+   {
+    "name": "space-8",
+    "value": "32px",
+    "usage": "Between related blocks."
+   },
+   {
+    "name": "space-12",
+    "value": "48px",
+    "usage": "Between sections."
+   },
+   {
+    "name": "space-16",
+    "value": "64px",
+    "usage": "Page margins on desktop; slide margins."
+   },
+   {
+    "name": "space-24",
+    "value": "96px",
+    "usage": "Hero and cover breathing room."
+   }
+  ]
+ },
+ "radius": {
+  "tokens": [
+   {
+    "name": "radius-none",
+    "value": "0px",
+    "usage": "Brand fields, slides, images: the gem is cut sharp, so large surfaces stay square."
+   },
+   {
+    "name": "radius-sm",
+    "value": "2px",
+    "usage": "Inputs, chips, buttons."
+   },
+   {
+    "name": "radius-md",
+    "value": "4px",
+    "usage": "Cards, menus, dialogs. The maximum; no pills."
+   }
+  ]
+ },
+ "shadow": {
+  "tokens": [
+   {
+    "name": "shadow-menu",
+    "value": {
+     "light": "0 4px 16px rgba(39,43,49,0.12)",
+     "dark": "0 4px 16px rgba(0,0,0,0.5)"
+    },
+    "usage": "Floating menus and popovers only; cards use border."
+   }
+  ]
+ }
+}

@@ -1,0 +1,29 @@
+{#- A page of the multi-page website: a tinted title band, then the section's pages
+    as a sidebar beside the body. `lead` is optional front matter. -#}
+{% extends "base.html.j2" %}
+{% block main %}
+<section class="page-head page-head-tinted">
+  <div class="container">
+    <p class="label">{{ section.title }}</p>
+    <h1>{{ page.title }}</h1>
+    {% if page.description %}<p class="lead">{{ page.description }}</p>{% endif %}
+  </div>
+</section>
+<section class="section">
+  <div class="container with-sidebar">
+    <nav class="sidebar" aria-label="In this site">
+      <p class="label">Pages</p>
+      <ul>
+        {% for item in section.menu %}
+        <li><a href="{{ item.url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
+        {% endfor %}
+        <li><a href="{{ section.button.url }}"{% if page.url == section.button.url %} aria-current="page"{% endif %}>{{ section.button.label }}</a></li>
+      </ul>
+    </nav>
+    <div class="prose">
+      {{ page.body | safe }}
+      {% if page.meta.get('form') %}{% with form_name = page.meta.form %}{% include "partials/form.html.j2" %}{% endwith %}{% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}

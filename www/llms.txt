@@ -1,0 +1,32 @@
+# Netlify examples
+
+> Worked examples on Netlify, styled with the Topaze brand kit: three static sites built with Jinja2 and Python (a landing page, a multi-page website and a blog), and a web app, the Topaze Clock. Every page of the three sites has a Markdown twin: its index.md, served to any request that sends Accept: text/markdown. Source: https://github.com/aigonai/site-netlifyexample. Built for the post "This app could have been a web app" on https://stefanloesch.substack.com: https://stefanloesch.substack.com/p/how-to-create-blog-landingpage-website-blog-webapp-using-claude-ai
+## Netlify examples
+
+- [Three sites and an app on Netlify](/index.md): A landing page, a multi-page website, a blog and a web app. One repository, plain files on Netlify. Pick the one closest to what you need and copy its folder.
+
+## Landing page example
+
+- [Your own tools, as web pages](/landing/index.md)
+- [Thank you](/landing/thanks/index.md)
+
+## Website example
+
+- [A small website in five pages](/site/index.md): The multi-page example. A home page, a guide, questions, an about page and a contact page, under one menu.
+- [About](/site/about/index.md): Who made this example, and why.
+- [Contact](/site/contact/index.md): How to reach the people behind this example.
+- [Message sent](/site/contact/thanks/index.md)
+- [Questions](/site/faq/index.md): The things people ask about a site built this way.
+- [Guide](/site/guide/index.md): How to change this site, from the copy on a page to its look.
+
+## Blog example
+
+- [Notes on small tools](/blog/index.md)
+- [About this blog](/blog/about/index.md)
+- [Ship it on Netlify](/blog/ship-it-on-netlify/index.md): Connect the repository, and every push to main is live in under a minute.
+- [Start with one folder](/blog/start-with-one-folder/index.md): A website is a folder of files. Keep it that way, and everything after is easy.
+- [Write the template once](/blog/write-the-template-once/index.md): One skeleton, two shared partials, a layout per kind of page. Nothing is written twice.
+
+## Web app
+
+- [Topaze Clock](/clock/): a world clock that runs entirely in the browser, installs as a PWA and works offline. MIT licensed. Source and explanation: [README](/clock/README.md)

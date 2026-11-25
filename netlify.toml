@@ -1,0 +1,108 @@
+[build]
+publish = "www"
+# Static site, nothing to build. An empty command stops Netlify guessing one.
+command = ""
+
+# Security headers on every response.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Strict-Transport-Security = "max-age=31536000"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# Assets: cached for a year. Safe because every link to /assets/ carries a cache
+# buster made from the file's content (asset() in _generate/build.py), so a changed
+# file is a changed URL. A file linked WITHOUT asset() would be stuck for a year.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Pages always revalidate, so a deploy shows at once.
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Edge functions live in netlify/edge-functions/ and declare their own paths in their
+# inline `config`, which is what Netlify routes by; nothing is repeated here.
+#   shortcut.ts             /s/<slug> and /skl, /stefan -> 302, slugs in the file
+#   markdown-negotiation.ts /* — Accept: text/markdown gets the page's index.md
+
+# Business cards: a phone offers "add to contacts" only for text/vcard.
+[[headers]]
+  for = "/downloads/cards/*.vcf"
+  [headers.values]
+    Content-Type = "text/vcard; charset=utf-8"
+
+# Markdown for LLMs.
+[[headers]]
+  for = "/*.md"
+  [headers.values]
+    Content-Type = "text/markdown; charset=utf-8"
+
+[[headers]]
+  for = "/blog/feed.xml"
+  [headers.values]
+    Content-Type = "application/rss+xml; charset=utf-8"
+
+[[headers]]
+  for = "/llms.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+
+# Agent discovery (RFC 8288), as on aigon.ai and topaze.xyz.
+[[headers]]
+  for = "/"
+  [headers.values]
+    Link = '</llms.txt>; rel="describedby"; type="text/plain", </index.md>; rel="alternate"; type="text/markdown"'
+
+# The world clock (/clock/). Its page and its two scripts always revalidate: the whole
+# app is those three files, so a deploy has to reach an installed copy at once. The
+# icons are cached for a day, since their names are not hashed. (The same rules as on
+# topaze.xyz, where this app runs; see static/clock/README.md.)
+[[headers]]
+  for = "/clock/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/clock/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# The service worker itself is never cached by the HTTP layer. It is the one file that
+# decides how everything else is cached, so a stale copy of it cannot be corrected by
+# anything the page does — the browser has to be able to see a new one.
+[[headers]]
+  for = "/clock/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+    Service-Worker-Allowed = "/clock/"
+
+[[headers]]
+  for = "/clock/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/clock/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+# Installing reads this, and a browser is entitled to refuse a manifest served as
+# anything else.
+[[headers]]
+  for = "/clock/manifest.webmanifest"
+  [headers.values]
+    Content-Type = "application/manifest+json; charset=utf-8"
+    Cache-Control = "public, max-age=0, must-revalidate"
+

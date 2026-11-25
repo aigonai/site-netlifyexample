@@ -1,0 +1,9 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Loesch;Stefan;;;
+FN:Stefan Loesch
+ORG:Aigon
+TITLE:CEO
+EMAIL;TYPE=INTERNET,WORK:stefan@aigon.ai
+URL:https://aigon.ai
+END:VCARD

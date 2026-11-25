@@ -1,0 +1,9 @@
+{#- The published Markdown of a blog post. The image is a root-relative URL here,
+    since the reader of this file is not in the post's folder. -#}
+# {{ page.title }}
+
+{{ page.meta.date | long_date }} · {{ page.meta.summary }}
+
+![{{ page.title }}]({{ page.file_url(page.meta.image) }})
+
+{{ page.markdown }}

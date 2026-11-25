@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Write the template once · Blog example</title>
+  <meta name="description" content="One skeleton, two shared partials, a layout per kind of page. Nothing is written twice.">
+  <meta property="og:title" content="Write the template once">
+  <meta property="og:description" content="One skeleton, two shared partials, a layout per kind of page. Nothing is written twice.">
+  <meta property="og:image" content="https://cosmic-zuccutto-c132f5.netlify.app/blog/write-the-template-once/hero.png">
+  <meta property="og:type" content="article">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/assets/img/topaze-gemstone.svg?v=714e7a6d00" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=8da9455d48">
+  <link rel="stylesheet" href="/assets/css/site.css?v=234cea6a18">
+  <link rel="alternate" type="application/rss+xml" title="Blog example" href="/blog/feed.xml">
+  <script src="/assets/js/site.js?v=c6e17bd89f" defer></script>
+</head>
+<body class="section-blog">
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="logo" href="/blog/" aria-label="Blog example: home">
+      <picture>
+        <source srcset="/assets/img/topaze-by-aigon-reversed.svg?v=e01d270dda" media="(prefers-color-scheme: dark)">
+        <img src="/assets/img/topaze-by-aigon.svg?v=11f9abb359" alt="Topaze by aigon" width="140" height="42">
+      </picture>
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg><span class="visually-hidden">Menu</span>
+    </button>
+    <nav id="site-menu" class="site-menu" aria-label="Main">
+      <ul>
+        <li><a href="/blog/">Posts</a></li>
+        <li><a href="/blog/about/">About</a></li>
+      </ul>
+      <a class="header-link" href="/blog/feed.xml">RSS feed</a>
+    </nav>
+  </div>
+</header>
+  <main id="main">
+<article class="post">
+  <header class="container narrow post-head">
+    <p class="meta"><svg class="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg> <time datetime="2026-11-17">17 November 2026</time></p>
+    <h1>Write the template once</h1>
+    <p class="lead">One skeleton, two shared partials, a layout per kind of page. Nothing is written twice.</p>
+  </header>
+  <figure class="container post-image">
+    <img src="/blog/write-the-template-once/hero.png" alt="" width="1600" height="900">
+  </figure>
+  <div class="container narrow prose">
+    <p>A site with ten pages has one header. If the header is in ten files, it is wrong in nine of them by next month.</p>
+<h2>Three levels</h2>
+<ol>
+<li><strong>The skeleton</strong>, <code>base.html.j2</code>: the head, the fonts, the stylesheet and script links, the favicons.</li>
+<li><strong>Shared partials</strong>: the top menu and the footer, included by the skeleton.</li>
+<li><strong>Layouts</strong>, one per kind of page: the landing page, an ordinary page, the blog's front page, a post, the about page. Each extends the skeleton and fills in the middle.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Kind of page</th>
+<th>Layout</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Landing page</td>
+<td><code>landing.html.j2</code></td>
+</tr>
+<tr>
+<td>Website page</td>
+<td><code>page.html.j2</code></td>
+</tr>
+<tr>
+<td>Blog front page</td>
+<td><code>blog_index.html.j2</code></td>
+</tr>
+<tr>
+<td>Blog post</td>
+<td><code>post.html.j2</code></td>
+</tr>
+<tr>
+<td>About page</td>
+<td><code>about.html.j2</code></td>
+</tr>
+</tbody>
+</table>
+<h2>No inline styles, no inline scripts</h2>
+<p>Every stylesheet and script is a file, linked with a cache buster made from its content. Change the file, and its address changes with it.</p>
+  </div>
+  <nav class="container narrow post-nav" aria-label="More posts">
+    <a href="/blog/"><svg class="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg> All posts</a>
+  </nav>
+</article>
+  </main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <img src="/assets/img/topaze-gemstone.svg?v=714e7a6d00" alt="" width="28" height="28">
+      <p>Blog example. Built with Jinja2 and published by Netlify from <a href="https://github.com/aigonai/site-netlifyexample">aigonai/site-netlifyexample</a>.</p>
+    </div>
+    <nav class="footer-links" aria-label="Examples">
+      <a href="/">All examples</a>
+      <a href="/landing/">Landing page</a>
+      <a href="/site/">Website</a>
+      <a href="/blog/">Blog</a>
+      <a href="https://stefanloesch.substack.com">Substack</a>
+      <a href="/llms.txt">llms.txt</a>
+    </nav>
+    <p class="footer-note">Topaze is a product of Aigon.</p>
+  </div>
+</footer>
+</body>
+</html>

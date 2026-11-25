@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="640 186 215 212" role="img" aria-labelledby="title"><title id="title">Topaze gemstone</title><g id="topaz-gemstone">
+<path fill="#079fe6" d="M750 199 842 385H653Z"></path>
+<path fill="#55c9ee" d="M750 199 714 332H781Z"></path>
+<path fill="#008ed7" d="M750 199 689 295 714 332Z"></path>
+<path fill="#049de0" d="M750 199 809 295 781 332Z"></path>
+<path fill="#0082ce" d="M689 295 653 385 714 332Z"></path>
+<path fill="#009ce3" d="M809 295 842 385 781 332Z"></path>
+<path fill="#0076bf" d="M653 385 714 332 747 385Z"></path>
+<path fill="#009cde" d="M714 332 781 332 747 385Z"></path>
+<path fill="#0074bf" d="M781 332 842 385H747Z"></path>
+<path fill="none" stroke="#fff" stroke-width="2.6" stroke-linejoin="round" d="M653 385 714 332 750 199 781 332 842 385M689 295 714 332H781L809 295"></path>
+</g></svg>

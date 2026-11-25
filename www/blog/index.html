@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Notes on small tools</title>
+  <meta name="description" content="Notes on building small tools as web pages.">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/assets/img/topaze-gemstone.svg?v=714e7a6d00" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=8da9455d48">
+  <link rel="stylesheet" href="/assets/css/site.css?v=234cea6a18">
+  <link rel="alternate" type="application/rss+xml" title="Blog example" href="/blog/feed.xml">
+  <script src="/assets/js/site.js?v=c6e17bd89f" defer></script>
+</head>
+<body class="section-blog">
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="logo" href="/blog/" aria-label="Blog example: home">
+      <picture>
+        <source srcset="/assets/img/topaze-by-aigon-reversed.svg?v=e01d270dda" media="(prefers-color-scheme: dark)">
+        <img src="/assets/img/topaze-by-aigon.svg?v=11f9abb359" alt="Topaze by aigon" width="140" height="42">
+      </picture>
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg><span class="visually-hidden">Menu</span>
+    </button>
+    <nav id="site-menu" class="site-menu" aria-label="Main">
+      <ul>
+        <li><a href="/blog/" aria-current="page">Posts</a></li>
+        <li><a href="/blog/about/">About</a></li>
+      </ul>
+      <a class="header-link" href="/blog/feed.xml">RSS feed</a>
+    </nav>
+  </div>
+</header>
+  <main id="main">
+<section class="masthead">
+  <div class="container">
+    <h1 class="display">Notes on small tools</h1>
+    <div class="lead"><p>Building small tools as web pages, with Claude Code and Netlify. One post per step.</p></div>
+  </div>
+</section>
+<section class="section">
+  <div class="container post-rows">
+<article class="post-row">
+  <p class="post-row-date mono"><time datetime="2026-11-24">24 November 2026</time></p>
+  <div class="post-row-text">
+<span class="badge">Latest</span>    <h2><a href="/blog/ship-it-on-netlify/">Ship it on Netlify</a></h2>
+    <p>Connect the repository, and every push to main is live in under a minute.</p>
+  </div>
+  <a class="post-row-image" href="/blog/ship-it-on-netlify/" tabindex="-1" aria-hidden="true">
+    <img src="/blog/ship-it-on-netlify/thumb-hero.png" alt="" loading="lazy" width="640" height="360">
+  </a>
+</article>
+<article class="post-row">
+  <p class="post-row-date mono"><time datetime="2026-11-17">17 November 2026</time></p>
+  <div class="post-row-text">
+    <h2><a href="/blog/write-the-template-once/">Write the template once</a></h2>
+    <p>One skeleton, two shared partials, a layout per kind of page. Nothing is written twice.</p>
+  </div>
+  <a class="post-row-image" href="/blog/write-the-template-once/" tabindex="-1" aria-hidden="true">
+    <img src="/blog/write-the-template-once/thumb-hero.png" alt="" loading="lazy" width="640" height="360">
+  </a>
+</article>
+<article class="post-row">
+  <p class="post-row-date mono"><time datetime="2026-11-10">10 November 2026</time></p>
+  <div class="post-row-text">
+    <h2><a href="/blog/start-with-one-folder/">Start with one folder</a></h2>
+    <p>A website is a folder of files. Keep it that way, and everything after is easy.</p>
+  </div>
+  <a class="post-row-image" href="/blog/start-with-one-folder/" tabindex="-1" aria-hidden="true">
+    <img src="/blog/start-with-one-folder/thumb-hero.png" alt="" loading="lazy" width="640" height="360">
+  </a>
+</article>
+  </div>
+</section>
+  </main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <img src="/assets/img/topaze-gemstone.svg?v=714e7a6d00" alt="" width="28" height="28">
+      <p>Blog example. Built with Jinja2 and published by Netlify from <a href="https://github.com/aigonai/site-netlifyexample">aigonai/site-netlifyexample</a>.</p>
+    </div>
+    <nav class="footer-links" aria-label="Examples">
+      <a href="/">All examples</a>
+      <a href="/landing/">Landing page</a>
+      <a href="/site/">Website</a>
+      <a href="/blog/">Blog</a>
+      <a href="https://stefanloesch.substack.com">Substack</a>
+      <a href="/llms.txt">llms.txt</a>
+    </nav>
+    <p class="footer-note">Topaze is a product of Aigon.</p>
+  </div>
+</footer>
+</body>
+</html>

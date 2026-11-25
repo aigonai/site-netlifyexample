@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+<channel>
+  <title>Blog example</title>
+  <link>https://cosmic-zuccutto-c132f5.netlify.app/blog/</link>
+  <description>Notes on building small tools as web pages.</description>
+  <item>
+    <title>Ship it on Netlify</title>
+    <link>https://cosmic-zuccutto-c132f5.netlify.app/blog/ship-it-on-netlify/</link>
+    <guid>https://cosmic-zuccutto-c132f5.netlify.app/blog/ship-it-on-netlify/</guid>
+    <pubDate>Tue, 24 Nov 2026 00:00:00 +0000</pubDate>
+    <description>Connect the repository, and every push to main is live in under a minute.</description>
+  </item>
+  <item>
+    <title>Write the template once</title>
+    <link>https://cosmic-zuccutto-c132f5.netlify.app/blog/write-the-template-once/</link>
+    <guid>https://cosmic-zuccutto-c132f5.netlify.app/blog/write-the-template-once/</guid>
+    <pubDate>Tue, 17 Nov 2026 00:00:00 +0000</pubDate>
+    <description>One skeleton, two shared partials, a layout per kind of page. Nothing is written twice.</description>
+  </item>
+  <item>
+    <title>Start with one folder</title>
+    <link>https://cosmic-zuccutto-c132f5.netlify.app/blog/start-with-one-folder/</link>
+    <guid>https://cosmic-zuccutto-c132f5.netlify.app/blog/start-with-one-folder/</guid>
+    <pubDate>Tue, 10 Nov 2026 00:00:00 +0000</pubDate>
+    <description>A website is a folder of files. Keep it that way, and everything after is easy.</description>
+  </item>
+</channel>
+</rss>

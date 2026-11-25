@@ -1,0 +1,31 @@
+{#- The one page skeleton: head, fonts, styles, favicons, header, footer, script.
+    Every layout extends this and fills `main`. No CSS or JS is written inline:
+    each file is linked through asset(), which adds a cache buster. -#}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ page.title }} · {{ section.title }}{% endblock %}</title>
+  <meta name="description" content="{% block description %}{{ page.description or section.get('description') or site.title }}{% endblock %}">
+  {% block meta %}{% endblock %}
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="{{ asset('assets/img/topaze-gemstone.svg') }}" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="{{ asset('assets/css/tokens.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/site.css') }}">
+  <link rel="alternate" type="application/rss+xml" title="{{ sections.blog.title }}" href="/blog/feed.xml">
+  <script src="{{ asset('assets/js/site.js') }}" defer></script>
+</head>
+<body class="section-{{ section.path.strip('/') or 'root' }}{% if section.get('theme') == 'dark' %} theme-dark{% endif %}">
+  {% block header %}{% include "partials/header.html.j2" %}{% endblock %}
+  <main id="main">
+    {% block main %}{% endblock %}
+  </main>
+  {% block footer %}{% include "partials/footer.html.j2" %}{% endblock %}
+</body>
+</html>

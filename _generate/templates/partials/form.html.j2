@@ -1,0 +1,25 @@
+{#- A Netlify form, from its definition in site.yaml (`forms:`). Call with
+    {% with form_name = 'contact' %}{% include "partials/form.html.j2" %}{% endwith %}.
+    data-netlify makes Netlify collect it; the hidden form-name field names the
+    submission; bot-field is a honeypot that people never see and bots fill in. -#}
+{% set form = site.forms[form_name] %}
+<form class="form" name="{{ form_name }}" method="POST" action="{{ form.action }}" data-netlify="true" netlify-honeypot="bot-field">
+  <input type="hidden" name="form-name" value="{{ form_name }}">
+  <p class="form-honeypot" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+  {% for field in form.fields %}
+  {% set id = form_name ~ '-' ~ field.name %}
+  <p class="form-field form-field-{{ field.type }}">
+    <label for="{{ id }}">{{ field.label }}{% if not field.get('required') %} <span class="optional">(optional)</span>{% endif %}</label>
+    {% if field.type == 'textarea' %}
+    <textarea id="{{ id }}" name="{{ field.name }}" rows="5"{% if field.get('required') %} required{% endif %}></textarea>
+    {% elif field.type == 'select' %}
+    <select id="{{ id }}" name="{{ field.name }}">
+      {% for option in field.options %}<option>{{ option }}</option>{% endfor %}
+    </select>
+    {% else %}
+    <input id="{{ id }}" name="{{ field.name }}" type="{{ field.type }}"{% if field.get('autocomplete') %} autocomplete="{{ field.autocomplete }}"{% endif %}{% if field.get('required') %} required{% endif %}>
+    {% endif %}
+  </p>
+  {% endfor %}
+  <p class="form-submit"><button class="button button-primary" type="submit">{{ form.submit }}</button></p>
+</form>

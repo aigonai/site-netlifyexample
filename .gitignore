@@ -1,0 +1,7 @@
+.DS_Store
+__pycache__
+*.ipynb
+.terminal_settings
+_deleted/
+.netlify/
+.www-build/

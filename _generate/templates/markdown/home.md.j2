@@ -1,0 +1,11 @@
+# {{ page.title }}
+
+{{ page.meta.lead }}
+
+Built for the post "{{ site.substack.post_title }}"{% if site.substack.live_url %} ({{ site.substack.live_url }}){% else %} (coming soon){% endif %}, on Stefan Loesch's Substack: {{ site.substack.url }}
+
+{% for example in page.meta.examples %}
+- [{{ example.title }}]({{ example.url }}index.md): {{ example.text }}
+{% endfor %}
+
+{{ page.markdown }}

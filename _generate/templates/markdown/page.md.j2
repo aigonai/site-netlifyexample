@@ -1,0 +1,9 @@
+{#- The published Markdown of an ordinary page: title, lead, body. No YAML, and
+    nothing from `private:`, which never reaches a template. -#}
+# {{ page.title }}
+
+{% if page.description %}
+{{ page.description }}
+
+{% endif %}
+{{ page.markdown }}

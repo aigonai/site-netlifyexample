@@ -1,0 +1,36 @@
+{#- The front door: no site header or footer, just the four examples, each a tile
+    in its own colour. It is a page of its own, not one of the examples. -#}
+{% extends "base.html.j2" %}
+{% from "partials/lucide.html.j2" import icon %}
+{% block title %}{{ page.title }}{% endblock %}
+{% block header %}{% endblock %}
+{% block main %}
+<section class="hub">
+  <div class="container hub-head">
+    <img class="hub-gem" src="{{ asset('assets/img/topaze-gemstone.svg') }}" alt="" width="48" height="48">
+    <p class="label">{{ page.meta.eyebrow }}</p>
+    <h1 class="display">{{ page.title }}</h1>
+    <p class="lead">{{ page.meta.lead }}</p>
+    <p class="hub-post">Built for the post <a href="{{ site.substack.live_url or site.substack.url }}">{{ site.substack.post_title }}</a>{% if not site.substack.live_url %} (coming soon){% endif %}, on <a href="{{ site.substack.url }}">Stefan Loesch's Substack</a>.</p>
+  </div>
+  <div class="container hub-tiles">
+    {% for example in page.meta.examples %}
+    <a class="hub-tile hub-tile-{{ loop.index }}" href="{{ example.url }}">
+      <span class="hub-number mono">{{ '%02d' | format(loop.index) }}</span>
+      {{ icon(example.icon) }}
+      <span class="hub-title">{{ example.title }}</span>
+      <span class="hub-text">{{ example.text }}</span>
+      <span class="hub-go">Open {{ icon('arrow-right') }}</span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
+{% block footer %}
+<footer class="hub-foot">
+  <div class="container">
+    <img src="{{ asset('assets/img/topaze-by-aigon.svg') }}" alt="Topaze by aigon" width="120" height="36">
+    <p>Source: <a href="{{ site.repo }}">aigonai/site-netlifyexample</a> · <a href="{{ site.substack.url }}">Substack</a> · <a href="/llms.txt">llms.txt</a></p>
+  </div>
+</footer>
+{% endblock %}

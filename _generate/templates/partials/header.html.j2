@@ -1,0 +1,30 @@
+{#- Top menu, shared by every page. The brand rules: the TOPAZE "by aigon" lockup on
+    the left, reversed on dark; at most four menu items on one
+    line; one button. The menu and the button come from the section in site.yaml. -#}
+{% from "partials/lucide.html.j2" import icon %}
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="logo" href="{{ section.path }}" aria-label="{{ section.title }}: home">
+      {% if section.get('theme') == 'dark' %}
+      <img src="{{ asset('assets/img/topaze-by-aigon-reversed.svg') }}" alt="Topaze by aigon" width="140" height="42">
+      {% else %}
+      <picture>
+        <source srcset="{{ asset('assets/img/topaze-by-aigon-reversed.svg') }}" media="(prefers-color-scheme: dark)">
+        <img src="{{ asset('assets/img/topaze-by-aigon.svg') }}" alt="Topaze by aigon" width="140" height="42">
+      </picture>
+      {% endif %}
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">
+      {{ icon('menu') }}<span class="visually-hidden">Menu</span>
+    </button>
+    <nav id="site-menu" class="site-menu" aria-label="Main">
+      <ul>
+        {% for item in section.menu %}
+        {% set here = page is defined and page.url == item.url %}
+        <li><a href="{{ item.url }}"{% if here %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
+        {% endfor %}
+      </ul>
+      <a class="{{ 'header-link' if section.get('button_style') == 'link' else 'button button-primary' }}" href="{{ section.button.url }}">{{ section.button.label }}</a>
+    </nav>
+  </div>
+</header>

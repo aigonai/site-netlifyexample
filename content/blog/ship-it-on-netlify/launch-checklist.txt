@@ -1,0 +1,11 @@
+Launch checklist
+================
+
+[ ] uv run _generate/build.py ran without errors
+[ ] git status shows the new index.html beside every changed index.md
+[ ] Every page has a title and, for posts, a date, summary and image
+[ ] Opened the site locally: uv run python -m http.server -d www 8000
+[ ] Checked one page on a phone-sized window
+[ ] Committed source and output together
+[ ] Pushed to main
+[ ] Opened the live page after a minute

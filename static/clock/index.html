@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Topaze Clock</title>
+<meta name="description" content="The time where you are, and where the people you work with are. Everything stays on your device.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f6f8fa">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://topaze.xyz/clock/">
+
+<!-- Installable: the manifest, the icon iOS uses, and the title it writes under it. -->
+<link rel="manifest" href="/clock/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/clock/apple-touch-icon.png?v=2">
+<meta name="apple-mobile-web-app-title" content="Topaze Clock">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="192x192" href="/clock/clock-192.png?v=2">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://topaze.xyz/clock/">
+<meta property="og:title" content="Topaze Clock">
+<meta property="og:description" content="The time where you are, and where the people you work with are. Everything stays on your device.">
+<meta property="og:image" content="https://topaze.xyz/clock/clock-512.png?v=2">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<script>
+  /* THE CHOSEN THEME, BEFORE THE FIRST PAINT. Read in clock.js instead and the page
+     paints the system theme first and corrects itself a moment later, which is a flash
+     of the opposite colour every single load. Same storage key as the app. */
+  try {
+    var chosen = JSON.parse(localStorage.getItem("aigon.worldclock.v1") || "{}").theme;
+    if (chosen === "light" || chosen === "dark") document.documentElement.setAttribute("data-theme", chosen);
+  } catch (unavailable) { /* a private window: the system theme it is */ }
+</script>
+<link rel="stylesheet" href="/clock/clock.css">
+</head>
+<body>
+<!-- TAPPING THE BAR TAKES YOU BACK: to the top of the list, to where you are on the
+     carousel, and nowhere at all on the other screens. Nothing announces it — a screen
+     whose whole job is to show the time should not carry a button that says "Here". -->
+<header class="bar" id="bar">
+  <a class="mark" href="/clock/" aria-label="Topaze Clock">
+    <img src="/clock/clock-192.png?v=2" alt="" width="30" height="30">
+    <span>Topaze Clock</span>
+  </a>
+  <p class="viewing" id="viewName">Cities</p>
+  <button type="button" id="menuOpen" class="hamburger" aria-expanded="false" aria-controls="menu"
+          aria-label="Menu"><span></span><span></span><span></span></button>
+</header>
+
+<!-- Everything that is not the clock itself lives in here, and here is shut by default. -->
+<nav class="menu" id="menu" hidden aria-label="Views and settings">
+  <p class="eyebrow">View</p>
+  <ul class="views" id="viewList"></ul>
+  <p class="eyebrow">Appearance</p>
+  <div class="menu-row" id="themeRow">
+    <button type="button" class="chip" data-theme-choice="system">System</button>
+    <button type="button" class="chip" data-theme-choice="light">Light</button>
+    <button type="button" class="chip" data-theme-choice="dark">Dark</button>
+  </div>
+</nav>
+
+<!-- A RAIL OF SCREENS, not a stack of hidden ones: the views sit side by side in a
+     horizontal scroller with snap points, so a swipe DRAGS them and the browser does the
+     animation, the momentum and the rubber band. -->
+<main class="rail" id="rail">
+  <!-- CITIES: the list. Every other view is a different arrangement of the same state. -->
+  <section class="view" id="view-list">
+    <div class="column">
+    <section class="here" id="clockHere" aria-label="Where you are">
+      <p class="eyebrow">Here</p>
+      <h1 class="place" id="hereName">&nbsp;</h1>
+      <p class="zone" id="hereZone">&nbsp;</p>
+      <p class="now" id="hereTime"><span class="hm">&nbsp;</span></p>
+      <p class="date" id="hereDate">&nbsp;</p>
+      <div class="arc" id="hereArc" aria-hidden="true"><i class="pin"></i></div>
+      <p class="solar" id="hereSolar">&nbsp;</p>
+    </section>
+
+    <!-- THE ADD BOX SITS UNDER *HERE*, above the cities it adds to. At the foot of the
+         list it was past everything the list already held, so adding a city meant
+         scrolling past every city you had (owner, 2026-11-18). -->
+    <section class="add" aria-label="Add a city">
+      <label class="eyebrow" for="clockSearch">Add a city</label>
+      <div class="search-wrap">
+        <input type="search" id="clockSearch" class="search" placeholder="City, country or time zone"
+               autocomplete="off" autocapitalize="none" spellcheck="false">
+        <button type="button" class="clear" id="clockClear" aria-label="Clear" hidden>&times;</button>
+      </div>
+      <ul class="hits" id="clockHits" hidden></ul>
+    </section>
+
+    <section aria-label="Elsewhere">
+      <ol class="rows" id="clockRows"></ol>
+      <p class="empty" id="clockEmpty" hidden>No other cities yet. Add one above.</p>
+    </section>
+    </div>
+  </section>
+
+  <!-- THE SAME CITIES AS A RING THAT NEVER ENDS. Scrolled either way it keeps going,
+       because the sequence is laid down several times over and the scroller is moved
+       back a whole copy whenever it nears an edge — every copy is identical, so the
+       move cannot be seen. No add box here: this view is for reading, and the one
+       button it has takes you back to where you are. -->
+  <section class="view" id="view-loop">
+    <!-- THE SAME ADD BOX. It cannot ride inside the ring — the ring is laid down many
+         times over and there can only be one field — so it is pinned above it, which is
+         also where it is reachable without scrolling to find it. It doubles as a way of
+         looking a time up: each hit carries the hour, in the clock's own figures. -->
+    <div class="loop-add">
+      <label class="eyebrow" for="loopSearch">Add a city</label>
+      <div class="search-wrap">
+        <input type="search" id="loopSearch" class="search" placeholder="City, country or time zone"
+               autocomplete="off" autocapitalize="none" spellcheck="false">
+        <button type="button" class="clear" id="loopClear" aria-label="Clear" hidden>&times;</button>
+      </div>
+      <ul class="hits" id="loopHits" hidden></ul>
+    </div>
+    <div class="loop" id="loopScroll">
+      <div class="loop-inner" id="loopInner"></div>
+    </div>
+  </section>
+
+  <!-- ONE 24-HOUR DIAL, every city placed on it by its own local time. -->
+  <section class="view" id="view-dial24">
+    <div class="column">
+    <div class="dial-wrap"><div class="dial" id="dial24"></div></div>
+    </div>
+  </section>
+
+  <!-- ONE 12-HOUR DIAL WITH TWO RINGS: the ring says which half of the day a city is in. -->
+  <section class="view" id="view-dial12">
+    <div class="column">
+    <div class="dial-wrap"><div class="dial" id="dial12"></div></div>
+    </div>
+  </section>
+
+  <!-- ONE 12-HOUR DIAL CUT SIX TO SIX: the day ring inside, the night ring outside. The
+       same face, the other cut — so each ring meets itself at the foot instead of
+       stepping at the top. -->
+  <section class="view" id="view-dn12">
+    <div class="column">
+    <div class="dial-wrap"><div class="dial" id="dn12"></div></div>
+    </div>
+  </section>
+
+  <!-- TWO DIALS: AM and PM, side by side or stacked. Each hour keeps the colour the
+       24-hour dial gives it, so the seam at the top of a wheel is a step — midnight at
+       one end of it, noon at the other. That is what an AM/PM cut is. -->
+  <section class="view" id="view-ampm">
+    <div class="column">
+    <div class="pair" id="dialPair">
+      <div class="dial-wrap"><div class="dial" id="dialAm"></div></div>
+      <div class="dial-wrap"><div class="dial" id="dialPm"></div></div>
+    </div>
+    </div>
+  </section>
+
+  <!-- TWO DIALS CUT SIX TO SIX: day and night, side by side or stacked. Noon at the top
+       of the one, midnight at the top of the other, and six in the morning and six in
+       the evening — one shade — meeting at the foot of both. -->
+  <section class="view" id="view-daynight">
+    <div class="column">
+    <div class="pair" id="dayNightPair">
+      <div class="dial-wrap"><div class="dial" id="dialDay"></div></div>
+      <div class="dial-wrap"><div class="dial" id="dialNight"></div></div>
+    </div>
+    </div>
+  </section>
+
+  <!-- THE CODE, and no clocks at all: this view is for copying the list to another device. -->
+  <section class="view" id="view-qr">
+    <div class="column">
+    <div class="code">
+      <canvas id="clockQr" width="320" height="320" aria-label="The list as a QR code"></canvas>
+      <p class="qr-note" id="clockQrNote"></p>
+    </div>
+    <p class="note">The cities live in this browser and nowhere else — topaze.xyz is a static site
+      and is never told them. Open this page on the other device, scan the code or paste the line
+      below, and it will hold the same cities.</p>
+    <ol class="plain" id="qrCities"></ol>
+    <label class="eyebrow" for="clockPayload">The same thing as text</label>
+    <textarea id="clockPayload" class="payload" rows="3" readonly spellcheck="false"></textarea>
+    <div class="sync-actions">
+      <button type="button" id="clockCopy" class="chip">Copy</button>
+    </div>
+    <label class="eyebrow" for="clockImport">Paste a link or a code from another device</label>
+    <textarea id="clockImport" class="payload" rows="3" placeholder="https://topaze.xyz/clock/?cities=… or WCB1;…" spellcheck="false"></textarea>
+    <div class="sync-actions">
+      <button type="button" id="clockApply" class="chip primary">Use this list</button>
+      <span class="said" id="clockSaid" role="status"></span>
+    </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <p>Brought to you by <a href="/">Topaze</a>.</p>
+</footer>
+
+<script src="/clock/qr.js"></script>
+<script src="/clock/clock.js"></script>
+<script src="/clock/dials.js"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+{#- A one-page landing: hero, steps, features, questions, call to action.
+    The copy is all front matter in www/landing/index.md; the body is the closing note. -#}
+{% extends "base.html.j2" %}
+{% from "partials/lucide.html.j2" import icon %}
+{% block title %}{{ page.title }}{% endblock %}
+{% block main %}
+{% set m = page.meta %}
+<section class="hero hero-landing">
+  <div class="container">
+    <p class="label">{{ m.hero.eyebrow }}</p>
+    <h1 class="display">{{ m.hero.headline }}</h1>
+    <p class="lead">{{ m.hero.lead }}</p>
+    <p class="actions">
+      <a class="button button-primary" href="#start">{{ m.hero.cta }} {{ icon('arrow-right') }}</a>
+      <a class="button button-secondary" href="#how">How it works</a>
+    </p>
+  </div>
+  <img class="facet-band" src="{{ asset('assets/img/facet-band.svg') }}" alt="" width="480" height="320">
+</section>
+
+<section class="section" id="how">
+  <div class="container">
+    <p class="label">How it works</p>
+    <h2>{{ m.how.title }}</h2>
+    <ol class="steps grid-3">
+      {% for step in m.how.steps %}
+      <li class="card">
+        <span class="step-number mono">{{ '%02d' | format(loop.index) }}</span>
+        <h3>{{ step.title }}</h3>
+        <p>{{ step.text }}</p>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>
+
+<section class="section section-sunken" id="features">
+  <div class="container">
+    <p class="label">What you get</p>
+    <h2>{{ m.features.title }}</h2>
+    <ul class="feature-list grid-2">
+      {% for f in m.features['items'] %}
+      <li>{{ icon('check') }}<div><h3>{{ f.title }}</h3><p>{{ f.text }}</p></div></li>
+      {% endfor %}
+    </ul>
+    <p class="figure"><span class="mono figure-value">{{ m.features.figure.value }}</span> {{ m.features.figure.label }}</p>
+  </div>
+</section>
+
+<section class="section" id="faq">
+  <div class="container narrow">
+    <p class="label">Questions</p>
+    <h2>Questions people ask</h2>
+    {% for q in m.faq %}
+    <details class="faq">
+      <summary>{{ q.q }}</summary>
+      <p>{{ q.a }}</p>
+    </details>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section cta-band" id="start">
+  <div class="container">
+    <h2>{{ m.cta.title }}</h2>
+    <div class="cta-grid">
+      <div class="prose">
+        {{ page.body | safe }}
+        <p><a href="{{ m.cta.url }}">{{ m.cta.label }} {{ icon('arrow-right') }}</a></p>
+      </div>
+      {% if page.meta.get('form') %}{% with form_name = page.meta.form %}{% include "partials/form.html.j2" %}{% endwith %}{% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}

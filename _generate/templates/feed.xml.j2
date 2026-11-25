@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+<channel>
+  <title>{{ section.title }}</title>
+  <link>{{ site.base_url }}{{ section.path }}</link>
+  <description>{{ section.description }}</description>
+  {% for post in posts %}
+  <item>
+    <title>{{ post.title }}</title>
+    <link>{{ site.base_url }}{{ post.url }}</link>
+    <guid>{{ site.base_url }}{{ post.url }}</guid>
+    <pubDate>{{ post.meta.date | rfc822 }}</pubDate>
+    <description>{{ post.meta.summary }}</description>
+  </item>
+  {% endfor %}
+</channel>
+</rss>

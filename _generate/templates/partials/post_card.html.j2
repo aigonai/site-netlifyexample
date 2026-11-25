@@ -1,0 +1,13 @@
+{#- One post in the blog's list: the date in mono, title, summary, thumbnail. The
+    newest carries the one imperial badge of the view. -#}
+<article class="post-row">
+  <p class="post-row-date mono"><time datetime="{{ post.meta.date }}">{{ post.meta.date | long_date }}</time></p>
+  <div class="post-row-text">
+    {% if latest %}<span class="badge">Latest</span>{% endif %}
+    <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+    <p>{{ post.meta.summary }}</p>
+  </div>
+  <a class="post-row-image" href="{{ post.url }}" tabindex="-1" aria-hidden="true">
+    <img src="{{ post.file_url(thumbnail_name(post.meta.image)) }}" alt="" loading="lazy" width="640" height="360">
+  </a>
+</article>
